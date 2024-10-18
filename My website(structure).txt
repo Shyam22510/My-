@@ -1,0 +1,134 @@
+index.html - html, CSS , JS - Home page for Movieruls
+
+Movieruls(view all) - html, CSS , JS - view all page for a section of movies
+
+Movieruls(movie) - html, CSS , JS - Movie player page
+
+Movieruls(search) - html, CSS , JS - search page for Movieruls
+
+V - contains html , css , js for various view all section pages
+
+
+
+To include view all section in index.html
+
+                                    -V/movieruls(Mcu-view all).html
+
+
+movieruls(Dc-view all) - contains DC universe movies
+
+movieruls(F&F-view all) - contains Fast and Furious movies
+
+movieruls(hp-view all) -  contains Harry Potter movies
+
+movieruls(Mcu-view all) - contains Marvel movies
+
+movieruls(Starwars-view all) - contains Starwars movies
+
+movieruls(TF-view all) - contains Trasnformers movies
+
+movieruls(x-view all)  - contains X-Men movies
+
+
+
+P - contains movie posters
+ 
+../../ - To include html files outside the folders
+
+
+Harrypotter/H1/movieruls(movie).html - To include html files inside the folders
+
+order for movie player links
+
+
+for index.html - Harrypotter/H1/movieruls(movie).html (in git - index.html)
+
+for movieruls(search) - Harrypotter/H1/movieruls(movie).html
+
+for movieruls(view all) - ../Harrypotter/H1/movieruls(movie).html
+
+ for movieruls(movie) -   ../H1/movieruls(movie).html       
+
+
+
+To include view all section in index.html
+
+                                    -V/movieruls(Mcu-view all).html
+
+
+for index.html - Harrypotter/H1/movieruls(movie).html (in git - index.htm)
+
+
+for adding  every movie section in home page with scroller and view all:
+ 
+code:
+
+html:
+
+<section class="top-rated-movies4">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid4" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+
+
+
+css:  view all for movie section
+
+.top-rated-movies4 {
+            position: relative; /* Ensure child elements can be positioned absolutely */
+            margin: 20px;
+        }
+
+js:
+
+
+const topRatedMovies3 = [
+    { title: 'X-Men', releaseDate: 2000, image: 'P/x1.jpg', link: 'xmen.html' },
+{ title: 'X2: X-Men United', releaseDate: 2003, image: 'P/x2.jpg', link: 'xmenunited.html' },
+{ title: 'X-Men: The Last Stand', releaseDate: 2006, image: 'P/x3.jpg', link: 'xmenlaststand.html' },
+{ title: 'X-Men Origins: Wolverine', releaseDate: 2009, image: 'P/x4.jpg', link: 'xmenoriginswolverine.html' },
+{ title: 'X-Men: First Class', releaseDate: 2011, image: 'P/x5.jpg', link: 'xmenfirstclass.html' },
+{ title: 'The Wolverine', releaseDate: 2013, image: 'P/x6.jpg', link: 'thewolverine.html' },
+{ title: 'X-Men: Days of Future Past', releaseDate: 2014, image: 'P/x7.webp', link: 'xmendaysoffuturepast.html' },
+{ title: 'X-Men: Apocalypse', releaseDate: 2016, image: 'P/x8.jpg', link: 'xmenapocalypse.html' },
+{ title: 'Logan', releaseDate: 2017, image: 'P/x9.jpg', link: 'logan.html' },
+{ title: 'Dark Phoenix', releaseDate: 2019, image: 'P/x10.jpg', link: 'darkphoenix.html' },
+{ title: 'The New Mutants', releaseDate: 2020, image: 'P/x11.jpg', link: 'thenewmutants.html' }
+
+
+
+]
+   
+
+
+        displayTopRatedMovies3();Display the top-rated movies in the third section
+
+
+
+function displayTopRatedMovies3() {
+    const topRatedMoviesGrid3 = document.getElementById('topRatedMoviesGrid3');
+    topRatedMoviesGrid3.innerHTML = ''; // Clear the grid
+
+    topRatedMovies3.forEach((movie) => {
+        const movieCard = document.createElement('div');
+        movieCard.classList.add('movie-card');
+        movieCard.innerHTML = `
+            <a href="${movie.link}">
+                <img src="${movie.image}" alt="${movie.title}">
+            </a>
+            <h3>${movie.title}</h3>
+            <p>Release Date: ${movie.releaseDate}</p>
+        `;
+        topRatedMoviesGrid3.appendChild(movieCard);
+    });
+    updateHorizontalScroll('topRatedMoviesGrid3');
+}

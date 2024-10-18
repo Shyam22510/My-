@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #f39c12;
+    --secondary-color: #f4f0ed;
+    --dark-bg: #161515;
+    --light-bg: #0b0b0b;
+    --text-color: #fff;
+    --text-muted: #ccc;
+    --hover-color: #f5f3ef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: var(--light-bg);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: top 0.3s ease-in-out;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+/* Default styling for larger screens */
+.responsive-title {
+    font-size: 2rem; /* Default font size */
+    text-align: center;
+}
+
+/* Force smaller font size on mobile devices */
+@media (max-width: 768px) {
+    .responsive-title {
+        font-size: 0.8rem !important; /* Force smaller font size */
+    }
+}
+/* Default size for larger screens */
+.responsive-text {
+    font-size: 1.2rem; /* Adjust this for larger screens */
+}
+
+/* Smaller size for mobile screens */
+@media (max-width: 768px) {
+    .responsive-text {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+}
+.side-menu-title {
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 1.8rem; /* Adjust title size */
+    text-align: center; /* Center align the title */
+    color: #5275f5; /* Change title color if needed */
+}
+.menu-heading {
+    color: #5275f5;         /* Change the color (you can adjust this color as needed) */
+}
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    color: white;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for hiding/showing */
+}
+
+/* Hide navbar class */
+.navbar.hidden {
+    transform: translateY(-100%); /* Move the navbar out of view */
+}
+
+/* Centered Title */
+.navbar .title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    color: white;
+    white-space: nowrap;
+    z-index: 1002; /* Ensure it stays above other elements */
+}
+
+/* Side Menu Button (Hamburger) */
+.menu-toggle {
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    z-index: 1001;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+/* Search Button and Search Bar Container */
+.search-container {
+    display: flex;
+    justify-content: center; /* Center the search button and bar */
+    align-items: center;
+    z-index: 1001;
+    position: relative;
+    transition: all 0.3s ease; 
+}
+
+/* Search Button */
+.search-container button {
+    background-color: #e9e3da;
+    color: #232020;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    z-index: 1001;
+}
+
+/* Search Input - starts small */
+.search-container input { 
+    padding: 10px; 
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    transition: width 0.5s ease, opacity 0.5s ease;
+    opacity: 0; /* Hidden by default */
+    width: 0; /* Collapsed state */
+    background-color: black; /* Black background for search bar */
+    color: white; /* White text inside the search bar */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    transform-origin: right center;
+    margin: 0 auto; /* Center the search input */
+}
+
+/* When the search input is active */
+.search-container input.active {
+    opacity: 1; /* Fully visible when active */
+    width: 250px; /* Expanded width */
+}
+
+/* Expanded Search Input - Full width and centered on PC */
+.search-container input.expanded {
+    width: 80vw; /* 80% of viewport width to leave space for centering */
+    opacity: 1;
+    padding-left: 20px;
+    border-radius: 25px;
+    z-index: 9999;
+    position: fixed;
+    top: 15px; /* Slight gap from the top */
+    height: 40px;
+    margin: 0 auto; /* Center horizontally */
+    left: 0; 
+    right: 0;
+}
+
+/* Hide the expanded input initially */
+.search-container input.hidden {
+    display: none;
+}
+
+/* Side Menu */
+.side-menu {
+    position: relative;
+    z-index: 1000; /* Lower z-index than the search container */
+}
+
+/* Fix for mobile view - Ensures proper layout on small screens */
+@media (max-width: 768px) {
+    .search-container input.active {
+        width: 200px; /* Slightly smaller width on mobile */
+    }
+
+    /* Full-width expanded search for mobile */
+    .search-container input.expanded {
+        width: 90vw; /* Slightly reduced width for mobile */
+        padding-left: 15px;
+        top: 10px;
+        margin: 0 auto; /* Keep it centered on mobile */
+    }
+
+    .search-container button {
+        padding: 8px 16px;
+    }
+}
+
+/* Background blur when search is active */
+.blur-background {
+    filter: blur(6px); /* You can adjust the blur intensity */
+    transition: filter 0.3s ease;
+}
+
+
+/* Side navigation with transparency */
+#sideNav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow-x: hidden;
+    transition: width 0.5s ease;
+    padding-top: 60px;
+    backdrop-filter: blur(5px);
+}
+
+/* Close button (X) inside the sideNav */
+#sideNav .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style for the list items in side navigation */
+#sideNav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#sideNav ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Adds a light line between items */
+}
+
+#sideNav ul li a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+    display: block;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+#sideNav ul li a:hover {
+    background-color: rgba(79, 126, 236, 0.7);
+    color: white;
+}
+
+/* When the sideNav is open */
+#sideNav.open {
+    width: 250px;
+}
+
+/* Optional: Remove the bottom border for the last item */
+#sideNav ul li:last-child {
+    border-bottom: none;
+}
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    /* Adjust title size for mobile */
+    .navbar .title {
+        font-size: 1.5rem;
+    }
+
+    /* Search container input expands to full width on mobile */
+    .search-container input.expanded {
+        width: calc(100% - 40px); /* Full width minus padding */
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 40px;
+    }
+
+    /* Adjust hamburger button */
+    .menu-toggle {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hide toggle button when side menu is open */
+.menu-toggle.hidden {
+    display: none;
+}
+
+/* Search input should cover full width on mobile */
+@media (max-width: 768px) {
+    .search-container input.expanded {
+        width: 90vw;
+    }
+}
+/* Style the scroll-to-top button */
+.scroll-to-top {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    width: 60px;  /* Adjust the size of the button */ 
+    height: 60px; 
+    background-color: #e6e6e6;  /* Light grey background */ 
+    color: #000;  /* Black arrow */ 
+    border-radius: 50%;  /* Circular shape */ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow around the button */ 
+    z-index: 1000;  /* Keep it on top */ 
+    border: none;  /* Ensure no border */ 
+    padding: 0;  /* Remove any extra padding */ 
+    margin: 0;    /* Remove any extra margin */ 
+    display: none;  /* Hidden by default */ 
+    opacity: 0; /* Start hidden with opacity */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth opacity and transform transitions */
+  }
+  
+  /* Show the button when scrolling down */
+  .show {
+    display: flex;
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Start position */
+  }
+  
+  /* Animation when the button is shown */
+  .scroll-to-top.show {
+    transform: translateY(-10px); /* Slightly move up */
+  }
+  
+  /* Arrow icon */
+  .arrow-icon {
+    width: 24px;  /* Arrow width */
+    height: 24px; /* Arrow height */
+    transform: rotate(180deg);  /* Reverse arrow to point upward */
+    transition: transform 0.3s ease; /* Smooth transition for arrow */
+  }
+  
+  /* Hover effect */
+  .scroll-to-top:hover {
+    background-color: #ccc; /* Darker grey on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  .scroll-to-top:hover .arrow-icon {
+    transform: rotate(180deg) scale(1.1); /* Slight zoom effect on hover */
+  }
+  
+
+
+
+
+/* Main Section Adjustments */
+main {
+    padding-top: 80px; /* Adjusted padding to account for header height */
+}
+
+/* "Sort by" Section */
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 20px 60px 20px;
+}
+
+.controls label {
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.controls select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid #0e0e0e;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #0e0e0e;
+}
+
+.controls select:hover {
+    cursor: pointer;
+}
+
+/* Movie Cards */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px; /* Add space between cards */
+    padding: 20px;
+}
+
+.movie-card {
+    text-align: center;
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 100%; /* Default width for small screens */
+    margin: 0;
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+}
+
+.movie-card:hover,
+.movie-card:focus {
+    transform: scale(1.07);
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card h3 {
+    margin: 15px 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.movie-card p {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.pagination a {
+    color: var(--text-color);
+    padding: 10px 15px;
+    text-decoration: none;
+    border: 1px solid #f5efef;
+    margin: 0 5px;
+    transition: transform 0.3s;
+}
+
+.pagination a:hover {
+    transform: scale(1.1);
+}
+
+.pagination a:focus {
+    background-color: #f4eded;
+}
+
+.pagination a.active {
+    background-color: var(--primary-color);
+    color: #e9e3e3;
+    border: 1px solid var(--primary-color);
+}
+
+
+/* For mobile screens */
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.movie-card {
+    flex: 0 0 100%;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 360px) {
+    .movie-card {
+        flex: 0 0 48%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .movie-card {
+        flex: 0 0 30%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-card {
+        flex: 0 0 23%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .movie-card {
+        flex: 0 0 20%;
+        margin-bottom: 40px;
+    }
+}
+

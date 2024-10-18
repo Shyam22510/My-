@@ -1,0 +1,196 @@
+<!-- search-results.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Results</title>
+        <link rel="stylesheet" href="styles(search).css">
+        <center><h2>your search results:</h2></center>
+
+    </head>
+    
+<body>
+     <!-- Navigation Bar -->
+     <div class="navbar">
+        <!-- Menu Toggle Button (☰) -->
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form action="movieruls(search).html" method="GET">
+                <input type="text" name="query" id="searchInput" placeholder="Search movies..." required>
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    
+
+    <div id="sideNav" class="side-menu">
+        <h2 class="side-menu-title">Movieruls</h2>
+
+        <!-- Close Button -->
+         
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">✖</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            
+            <!-- Centered Genre Heading -->
+            <h2 class="menu-heading">&nbsp;&nbsp;&nbsp;&nbsp;Genres</h2>
+        
+            <li><a href="movieruls1.html">&nbsp;&nbsp;Action</a></li>
+                <li><a href="#about">&nbsp;&nbsp;Adventure</a></li>
+                <li><a href="#movies">&nbsp;&nbsp;Sci-Fi</a></li>
+                <li><a href="#contact">&nbsp;&nbsp;Fantasy</a></li>
+                <li><a href="movieruls.html">&nbsp;&nbsp;Horror</a></li>
+            <li><a href="#movies">About Us!</a></li>
+        </ul>
+    </div>
+
+    
+
+    
+    <!-- Menu Toggle Button (☰) -->
+    <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+   
+
+
+    <div id="results"></div>
+
+    <!-- Back to Home Button at the Bottom -->
+    <div id="back-home">
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+
+    
+    <script>
+
+    // Sample movie data array 
+    const movies = [
+    { title: 'The Incredible Hulk', releaseDate: 2008, image: 'P/Hulk.jpg', link: 'captainmarvel.html', genre: 'Action', year: 2008 }, 
+{ title: 'Iron Man 2', releaseDate: 2010, image: 'P/IM2.jpg', link: 'deadpool1.html', genre: 'Action', year: 2010 }, 
+{ title: 'Captain America: The First Avenger', releaseDate: 2011, image: 'P/Cp1.jpg', link: 'Theavengers.html', genre: 'Action', year: 2011 }, 
+{ title: 'Thor 1', releaseDate: 2011, image: 'P/Thor1.jpg', link: 'endgame.html', genre: 'Action', year: 2011 }, 
+{ title: 'Iron Man 3', releaseDate: 2013, image: 'P/IM3.jpg', link: 'ironman.html', genre: 'Action', year: 2013 }, 
+{ title: 'Thor 2', releaseDate: 2013, image: 'P/Thor2.jpg', link: 'spiderman.html', genre: 'Action', year: 2013 }, 
+{ title: 'Guardians of the Galaxy', releaseDate: 2014, image: 'P/Gog1.jpg', link: 'Theavengers.html', genre: 'Action', year: 2014 }, 
+{ title: 'The Avengers: Age Of Ultron', releaseDate: 2015, image: 'P/Avengers2.jpg', link: 'Theavengers.html', genre: 'Action', year: 2015 }, 
+{ title: 'Ant-Man', releaseDate: 2015, image: 'P/AM1.jpg', link: 'endgame.html', genre: 'Action', year: 2015 }, 
+{ title: 'Captain America: Civil War', releaseDate: 2016, image: 'P/Cp3.jpg', link: 'Theavengers.html', genre: 'Action', year: 2016 }, 
+{ title: 'Thor 3', releaseDate: 2017, image: 'P/Thor3.jpg', link: 'captainmarvel.html', genre: 'Action', year: 2017 }, 
+{ title: 'Spider-Man: Homecoming', releaseDate: 2017, image: 'P/hcm.jpeg', link: 'deadpool1.html', genre: 'Action', year: 2017 }, 
+{ title: 'Guardians of the Galaxy Vol. 2', releaseDate: 2017, image: 'P/Gog2.jpg', link: 'captainmarvel.html', genre: 'Action', year: 2017 }, 
+{ title: 'Captain America: The Winter Soldier', releaseDate: 2018, image: 'P/Cp2.jpg', link: 'avengersmdl.html', genre: 'Action', year: 2018 }, 
+{ title: 'Avengers: Infinity War', releaseDate: 2018, image: 'P/infinitywar.jpg', link: 'avengersmdl.html', genre: 'Action', year: 2018 }, 
+{ title: 'Black Panther', releaseDate: 2018, image: 'P/Bp.jpeg', link: 'ironman.html', genre: 'Action', year: 2018 }, 
+{ title: 'Ant-Man and The Wasp', releaseDate: 2018, image: 'P/AM2.jpg', link: 'spiderman.html', genre: 'Action', year: 2018 }, 
+{ title: 'Deadpool 2', releaseDate: 2018, image: 'P/Dp2.jpg', link: 'https:rubyvid.comjbafmg69zl32.html', genre: 'Action', year: 2018 }, 
+{ title: 'Avengers: Endgame', releaseDate: 2019, image: 'P/Endgame.jpg', link: 'Theavengers.html' }, 
+{ title: 'Captain Marvel', releaseDate: 2019, image: 'P/CaptainMarvel.jpg', link: 'captainmarvel.html', genre: 'Action', year: 2019 }, 
+{ title: 'Spider-Man: No Way Home', releaseDate: 2021, image: 'P/nwh.jpg', link: 'spiderman.html', genre: 'Action', year: 2021 }, 
+{ title: 'Black Widow', releaseDate: 2021, image: 'P/BW.jpg', link: 'Theavengers.html', genre: 'Action', year: 2021 }, 
+{ title: 'Shang-Chi and the Legend of the Ten Rings', releaseDate: 2021, image: 'P/Shangchi.jpg', link: 'avengersmdl.html', genre: 'Action', year: 2021 }, 
+{ title: 'Eternals', releaseDate: 2021, image: 'P/Eternal.jpg', link: 'Theavengers.html', genre: 'Action', year: 2021 }, 
+{ title: 'Doctor Strange in the Multiverse of Madness', releaseDate: 2022, image: 'P/Doctor Strange2.jpg', link: 'deadpool1.html', genre: 'Action', year: 2022 }, 
+{ title: 'Black Panther: Wakanda Forever', releaseDate: 2022, image: 'P/Bp2.jpg', link: 'ironman.html', genre: 'Action', year: 2022 }, 
+{ title: 'Ant-Man and The Wasp: Quantumania', releaseDate: 2023, image: 'P/AM3.jpg', link: 'endgame.html', genre: 'Action', year: 2023 }, 
+{ title: 'Guardians of the Galaxy Vol. 3', releaseDate: 2023, image: 'P/Gog3.jpg', link: 'spiderman.html', genre: 'Action', year: 2023 }, 
+{ title: 'The Marvels', releaseDate: 2023, image: 'P/The marvels.jpeg', link: 'captainmarvel.html', genre: 'Action', year: 2023 },
+        { title: 'Harry Potter and the Sorcerer\'s Stone', releaseDate: 2001, image: 'P/hp1.jpg', link: 'Harrypotter/H1/movieruls(movie).html' },
+{ title: 'Harry Potter and the Chamber of Secrets', releaseDate: 2002, image: 'P/hp2.jpg', link: 'Harrypotter/H2/movieruls(movie).html' },
+{ title: 'Harry Potter and the Prisoner of Azkaban', releaseDate: 2004, image: 'P/hp3.jpg', link: 'Harrypotter/H3/movieruls(movie).html' },
+{ title: 'Harry Potter and the Goblet of Fire', releaseDate: 2005, image: 'P/hp4.jpg', link: 'Harrypotter/H4/movieruls(movie).html' },
+{ title: 'Harry Potter and the Order of the Phoenix', releaseDate: 2007, image: 'P/hp5.jpg', link: 'Harrypotter/H5/movieruls(movie).html' },
+{ title: 'Harry Potter and the Half-Blood Prince', releaseDate: 2009, image: 'P/hp6.jpg', link: 'Harrypotter/H6/movieruls(movie).html' },
+{ title: 'Harry Potter and the Deathly Hallows Part 1', releaseDate: 2010, image: 'P/hp7.jpg', link: 'Harrypotter/H7/movieruls(movie).html' },
+{ title: 'Harry Potter and the Deathly Hallows Part 2', releaseDate: 2011, image:'P/hp8.jpg', link: 'Harrypotter/H8/movieruls(movie).html' },
+{ title: 'Batman Begins', releaseDate: 2005, image: 'P/Batman Begins.jpg', link: 'Dc/Dc1/movieruls(movie).html' },  
+{ title: 'The Dark Knight', releaseDate: 2008, image: 'P/The Dark Knight.jpg', link: 'Dc/Dc2/movieruls(movie).html' }, 
+{ title: 'Green Lantern', releaseDate: 2012, image: 'P/Green Lantern.jpg', link: 'Dc/Dc3/movieruls(movie).html' },
+{ title: 'The Dark Knight Rises', releaseDate: 2011, image: 'P/The Dark Knight Rises.jpeg', link: 'Dc/Dc4/movieruls(movie).html' },
+{ title: 'Man of Steel', releaseDate: 2013, image: 'P/Man of Steel.jpg', link: 'Dc/Dc5/movieruls(movie).html' }, 
+{ title: 'Batman v Superman: Dawn of Justice', releaseDate: 2016, image: 'P/BVS.jpg', link: 'Dc/Dc6/movieruls(movie).html' }, 
+{ title: 'Suicide Squad', releaseDate: 2016, image: 'P/Suicide squad.jpg', link: 'Dc/Dc7/movieruls(movie).html' }, 
+{ title: 'Wonder Woman', releaseDate: 2017, image: 'P/Wonder Woman.jpg', link: 'Dc/Dc8/movieruls(movie).html' }, 
+{ title: 'Justice League', releaseDate: 2017, image: 'P/Justice League.jpg', link: 'Dc/Dc9/movieruls(movie).html' }, 
+{ title: 'Aquaman', releaseDate: 2018, image: 'P/Aquaman.jpg', link: 'Dc/Dc10/movieruls(movie).html' }, 
+{ title: 'Shazam!', releaseDate: 2019, image: 'P/Shazam!.jpg', link: 'Dc/Dc11/movieruls(movie).html' }, 
+{ title: 'Joker', releaseDate: 2019, image: 'P/joker.jpg', link: 'Dc/Dc12/movieruls(movie).html' }, 
+{ title: 'Birds of Prey', releaseDate: 2020, image: 'P/Birds of Prey.webp', link: 'Dc/Dc13/movieruls(movie).html' }, 
+{ title: 'Wonder Woman 1984', releaseDate: 2020, image: 'P/Wonder Woman2.jpg', link: 'Dc/Dc14/movieruls(movie).html' }, 
+{ title: 'Zack Snyder\'s Justice League', releaseDate: 2021, image: 'P/Justice League1.jpg', link: 'Dc/Dc15/movieruls(movie).html' }, 
+{ title: 'The Suicide Squad', releaseDate: 2021, image: 'P/Suicide squad.jpg', link: 'Dc/Dc16/movieruls(movie).html' }, 
+{ title: 'The Batman', releaseDate: 2022, image: 'P/The Batman.jpg', link: 'Dc/Dc17/movieruls(movie).html' },  
+{ title: 'Black Adam', releaseDate: 2022, image: 'P/Black Adam.jpg', link: 'Dc/Dc18/movieruls(movie).html' },
+{ title: 'Shazam! Fury of the Gods', releaseDate: 2023, image: 'P/Shazam!2.jpg', link: 'Dc/Dc19/movieruls(movie).html' }, 
+{ title: 'The Flash', releaseDate: 2023, image: 'P/The flash.jpg', link: 'Dc/Dc20/movieruls(movie).html' }, 
+{ title: 'Blue Beetle', releaseDate: 2023, image: 'P/blue Beetle.jpg', link: 'Dc/Dc21/movieruls(movie).html' }, 
+{ title: 'Aquaman and the Lost Kingdom', releaseDate: 2023, image: 'P/Aquaman2.jpg', link: 'Dc/Dc22/movieruls(movie).html' },
+{ title: 'X-Men', releaseDate: 2000, image: 'P/x1.jpg', link: 'X-MEN/X1/movieruls(movie).html' },
+{ title: 'X2: X-Men United', releaseDate: 2003, image: 'P/x2.jpg', link: 'X-MEN/X2/movieruls(movie).html' },
+{ title: 'X-Men: The Last Stand', releaseDate: 2006, image: 'P/x3.jpg', link: 'X-MEN/X3/movieruls(movie).html' },
+{ title: 'X-Men Origins: Wolverine', releaseDate: 2009, image: 'P/x4.jpg', link: 'X-MEN/X4/movieruls(movie).html' },
+{ title: 'X-Men: First Class', releaseDate: 2011, image: 'P/x5.jpg', link: 'X-MEN/X5/movieruls(movie).html' },
+{ title: 'The Wolverine', releaseDate: 2013, image: 'P/x6.jpg', link: 'X-MEN/X6/movieruls(movie).html' },
+{ title: 'X-Men: Days of Future Past', releaseDate: 2014, image: 'P/x7.webp', link: 'X-MEN/X7/movieruls(movie).html' },
+{ title: 'X-Men: Apocalypse', releaseDate: 2016, image: 'P/x8.jpg', link: 'X-MEN/X8/movieruls(movie).html' },
+{ title: 'Logan', releaseDate: 2017, image: 'P/x9.jpg', link: 'X-MEN/X9/movieruls(movie).html' },
+{ title: 'Dark Phoenix', releaseDate: 2019, image: 'P/x10.jpg', link: 'X-MEN/X10/movieruls(movie).html' },
+{ title: 'The New Mutants', releaseDate: 2020, image: 'P/x11.jpg', link: 'X-MEN/X11/movieruls(movie).html' },
+{ title: 'Transformers', releaseDate: 2007, image: 'P/TF1.webp', link: 'Transformers/TF1/movieruls(movie).html' }, 
+{ title: 'Transformers: Revenge of the Fallen', releaseDate: 2009, image: 'P/TF2.avif', link: 'Transformers/TF2/movieruls(movie).html' },  
+{ title: 'Transformers: Dark of the Moon', releaseDate: 2011, image: 'P/TF3.jpg', link: 'Transformers/TF3/movieruls(movie).html' },  
+{ title: 'Transformers: Age of Extinction', releaseDate: 2014, image: 'P/TF4.jpg', link: 'Transformers/TF4/movieruls(movie).html' },  
+{ title: 'Transformers: The Last Knight', releaseDate: 2017, image: 'P/TF5.jpg', link: 'Transformers/TF5/movieruls(movie).html' },  
+{ title: 'Bumblebee', releaseDate: 2018, image: 'P/TF6.jpg', link: 'Transformers/TF6/movieruls(movie).html' },  
+{ title: 'Transformers: Rise of the Beasts', releaseDate: 2023, image: 'P/TF7.jpg', link: 'Transformers/TF7/movieruls(movie).html' }
+
+
+
+
+
+        
+    ];
+    
+    // Function to get query parameter from URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    
+   // Function to display search results
+function displayResults(query) {
+    const resultsContainer = document.getElementById('results');
+    const filteredMovies = movies.filter(movie =>
+        movie.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    if (filteredMovies.length === 0) {
+        resultsContainer.innerHTML = `<p>No results found for "${query}"</p>`;
+    } else {
+        const movieList = filteredMovies.map(movie => `
+            <a href="${movie.link}" class="movie">
+                <img src="${movie.image}" alt="${movie.title}" />
+                <h2>${movie.title}</h2>
+                
+            </a>
+        `).join('');
+        resultsContainer.innerHTML = movieList;
+    }
+}
+
+    
+    // Get search query and display results
+    const query = getQueryParam('query');
+    if (query) {
+        displayResults(query);
+    }
+    </script>
+<script src="script(search).js"></script>
+
+
+</body>
+</html>

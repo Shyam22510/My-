@@ -1,0 +1,400 @@
+/* search-results.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+    --primary-color: #fff; /* Changed to white for a white and black theme */
+    --secondary-color: #000; /* Changed to black for a white and black theme */
+    --dark-bg: #161515; 
+    --light-bg: #0b0b0b; 
+    --text-color: #fff; 
+    --text-muted: #ccc; 
+    --hover-color: #f5f3ef; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 20px;
+}
+header {
+    background-color: var(--light-bg);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: top 0.3s ease-in-out;
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+/* Default styling for larger screens */
+.responsive-title {
+    font-size: 2rem; /* Default font size */
+    text-align: center;
+}
+
+/* Force smaller font size on mobile devices */
+@media (max-width: 768px) {
+    .responsive-title {
+        font-size: 0.8rem !important; /* Force smaller font size */
+    }
+}
+/* Default size for larger screens */
+.responsive-text {
+    font-size: 1.2rem; /* Adjust this for larger screens */
+}
+
+/* Smaller size for mobile screens */
+@media (max-width: 768px) {
+    .responsive-text {
+        font-size: 0.8rem; /* Smaller font size for mobile */
+    }
+}
+.side-menu-title {
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 1.8rem; /* Adjust title size */
+    text-align: center; /* Center align the title */
+    color: #5275f5; /* Change title color if needed */
+}
+
+.menu-heading {
+    color: #5275f5;         /* Change the color (you can adjust this color as needed) */
+}
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+/* Search Container */
+.search-container {  
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    width: auto; /* Dynamic width when inactive */
+    max-width: 100vw; /* Prevent overflow */
+    transition: all 0.4s ease; /* Smooth transition when input expands */
+}
+
+/* Search Input - starts small and hidden */
+.search-container input { 
+    padding: 10px; 
+    font-size: 16px; 
+    border: none; 
+    border-radius: 25px;
+    transition: width 0.5s ease, opacity 0.5s ease;
+    opacity: 0; /* Hidden initially */
+    width: 0; /* Collapsed initially */
+    background-color: rgb(13, 1, 1); /* Dark background */
+    box-shadow: 0 4px 6px rgba(249, 245, 245, 0.1); /* Light shadow */
+    border: 1px solid #ccc;
+    color: #fff; /* White text */
+    transform-origin: right center; /* Expand to the left */
+}
+
+/* Expanded Search Input */
+.search-container input.expanded { 
+    width: 100vw; /* Full viewport width */
+    opacity: 1; /* Fully visible when active */
+    padding-left: 20px;
+    border-radius: 25px;
+    z-index: 9999; /* Above other elements */
+    position: fixed; /* Cover full width */
+    right: 0;
+    left: 0; /* Stretch to both sides of the viewport */
+    top: 20px; /* Keep consistent top position */
+    height: 45px; /* Adjust height to match button */
+}
+
+/* Search Button */
+.search-container button {  
+    background-color: #000; /* Black button */
+    color: #fff; /* White icon */
+    padding: 10px;
+    border: none;
+    border-radius: 50%; /* Circle shape */
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; /* Icon size */
+    width: 45px; /* Circle size */
+    height: 45px; /* Circle size */
+}
+
+/* Search Button Icon */
+.search-container button::before { 
+    content: '🔍'; /* Search icon */
+    font-size: 1.5rem; /* Icon size */
+    color: #fff; /* White icon */
+}
+
+/* Hover effect on Search Button */
+.search-container button:hover { 
+    background-color: #f6f2f2; /* Lighter background on hover */
+    transform: scale(1.1); /* Slight zoom */
+}
+
+/* Hover effect for Search Icon */
+.search-container button:hover::before {
+    transform: scale(1.2); /* Enlarge icon slightly */
+}
+
+/* Hide input initially */
+.search-container input.hidden {
+    display: none;
+}
+
+/* Background blur when search is active */
+.blur-background {
+    filter: blur(5px); /* Adjust blur intensity */
+    transition: filter 0.3s ease;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .search-container input.expanded {
+        width: 100vw; /* Full viewport width on mobile */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .search-container button {
+        width: 40px; /* Adjust size for mobile */
+        height: 40px; /* Adjust size for mobile */
+    }
+}
+
+/* Side Menu */
+.side-menu {
+    position: relative;
+}
+
+/* Side navigation with transparency */ 
+#sideNav { 
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1000; /* Ensure it is above all other content */
+    top: 0; 
+    left: 0; 
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with 80% opacity */ 
+    overflow-x: hidden; 
+    transition: width 0.5s ease; /* Smooth open/close transition */ 
+    padding-top: 60px; 
+    backdrop-filter: blur(5px); /* Optional: Adds a blur effect for extra smoothness */ 
+} 
+ 
+/* Close button (X) inside the sideNav */ 
+#sideNav .close-btn { 
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    font-size: 2rem; 
+    color: white; 
+    text-decoration: none; 
+    cursor: pointer; 
+} 
+ 
+/* Style for the list items in side navigation */ 
+#sideNav ul { 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+} 
+ 
+#sideNav ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Adds a light line between items */
+} 
+ 
+#sideNav ul li a { 
+    padding: 10px 15px; 
+    text-decoration: none; 
+    font-size: 1.2rem; /* Reduced font size */ 
+    color: white; 
+    display: block; 
+    transition: background-color 0.3s ease; 
+    white-space: nowrap; /* Prevent text from splitting into multiple lines */ 
+} 
+ 
+#sideNav ul li a:hover { 
+    background-color: rgba(79, 126, 236, 0.7);
+    color: white; 
+} 
+ 
+/* When the sideNav is open */ 
+#sideNav.open { 
+    width: 250px; 
+}
+
+/* Side Menu Button */
+.side-menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 1001; /* Ensure it's above the menu */
+    transition: background-color 0.3s ease;
+}
+
+/* Hide button when side menu is open */
+#sideNav.open ~ .side-menu-button {
+    display: none;
+}
+
+.side-menu-button:hover {
+    background-color: rgba(231, 228, 223, 0.8); /* Hover effect */
+}
+
+/* Menu toggle button (☰) */
+.menu-toggle {
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    top: 15px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    z-index: 2;
+}
+
+/* Hide the toggle button when side menu is open */
+.menu-toggle.hidden {
+    display: none;
+}
+
+/* Ensure sideNav content stays vertical and doesn't shift horizontally */
+#sideNav ul {
+    flex-direction: column; /* Make sure the list items are always vertical */
+    text-align: left; 
+}
+
+
+
+.movie {
+    background-color: var(--light-bg);
+    border-radius: 10px;
+    padding: 0; /* Remove padding for full image coverage */
+    width: 100%; /* Ensure full width */
+    max-width: 250px; /* Max width for larger screens */
+    position: relative; /* Position relative for absolute positioning of image */
+    overflow: hidden; /* Hide overflow for better image fit */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.movie img {
+    display: block; /* Ensure the image behaves as a block element */
+    width: 100%; /* Cover the entire card width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure the image covers the card area */
+    border-radius: 10px; /* Ensure image corners are rounded */
+    transition: opacity 0.3s ease;
+}
+
+.movie:hover img {
+    opacity: 0.5; /* light opacity change on hover */
+}
+
+.movie h2, .movie p {
+    position: absolute; /* Position text absolutely */
+    bottom: 10px; /* Position at the bottom of the card */
+    left: 10px;
+    right: 10px;
+    color: var(--text-color);
+    margin: 0;
+    z-index: 1; /* Ensure text is on top of image */
+}
+
+.movie h2 {
+    font-size: 1.2rem;
+    margin-bottom: 5px; 
+}
+
+.movie p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (max-width: 1199px) {
+    #results {
+        justify-content: center; /* Center align items */
+    }
+    
+    .movie {
+        width: 45%; /* Two items per row */
+    }
+}
+
+@media (max-width: 991px) {
+    .movie {
+        width: 48%; /* Two items per row */
+    }
+}
+
+@media (max-width: 718px) {
+    .movie {
+        width: 100%; /* One item per row */
+    }
+}
+
+/* Back Button Styling */
+#back-home {
+    text-align: center;
+    margin-top: 40px; /* Adds space between the movie cards and the back button */
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    font-weight: 500; /* Match font weight to your theme */
+}
+
+.back-button:hover {
+    background-color: rgba(231, 228, 223, 0.8); /* Hover effect */
+}
+
+/* Ensure that the back button is always clearly visible */
+#back-home {
+    margin-bottom: 50px; 
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Movierulz</title>
+    <link rel="stylesheet" href="styles(main).css">
+    <style>
+        /* Float the "Sort by" dropdown to the right */
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px;
+        }
+
+        .controls label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .controls select {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        /* Page Loading Animation */
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #loading img {
+            width: 150px;
+        }
+
+        /* Movie Grid and Cards */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+            padding: 20px;
+        }
+
+        .movie-card {
+            text-align: center;
+        }
+
+        .movie-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .movie-card h3 {
+            margin: 5px 0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading">
+        <img src="Loading.gif" alt="Loading...">
+    </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Menu Toggle Button (☰) -->
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+
+        <center><h2>Movieruls</h2></center>
+
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form action="movieruls(search).html" method="GET">
+                <input type="text" name="query" id="searchInput" placeholder="Search movies..." required>
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+    </nav>
+    
+    
+
+    <div id="sideNav" class="side-menu">
+        <h2 class="side-menu-title">Movieruls</h2>
+
+        <!-- Close Button -->
+         
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">✖</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            
+            <!-- Centered Genre Heading -->
+            <h2 class="menu-heading">&nbsp;&nbsp;&nbsp;&nbsp;Genres</h2>
+        
+            <li><a href="movieruls1.html">&nbsp;&nbsp;Action</a></li>
+                <li><a href="#about">&nbsp;&nbsp;Adventure</a></li>
+                <li><a href="#movies">&nbsp;&nbsp;Sci-Fi</a></li>
+                <li><a href="#contact">&nbsp;&nbsp;Fantasy</a></li>
+                <li><a href="movieruls.html">&nbsp;&nbsp;Horror</a></li>
+                <li>
+                    <a href="movieruls(movie).html">
+                        Follow us <i class="fab fa-telegram-plane"></i> 
+                    </a>
+                </li>
+        </ul>
+        
+    </div>
+
+   
+   <!-- Scroll to Top Arrow Button -->
+<a href="javascript:void(0);" class="scroll-to-top" onclick="scrollToTop();">
+  <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+</a>
+
+
+
+
+    <main>
+
+        <div class="movie-slider">
+            <button class="slider-prev">&lt;</button>
+            <div class="slider-wrapper">
+                <div class="slider-container">
+                    <div class="movie-poster"><a href="1.jpg"><img src="P/13.jpg" alt="Movie 1"></a></div>
+                    
+                    <div class="movie-poster"><a href="1.jpg"><img src="P/11.jpg" alt="Movie 1"></a></div>
+                    <div class="movie-poster"><a href="1.jpg"><img src="P/5.jpg" alt="Movie 1"></a></div>
+
+                    <div class="movie-poster"><a href="1.jpg"><img src="P/9.jpg" alt="Movie 1"></a></div>
+
+                    
+                    
+                    <!-- Add more movie posters as needed -->
+                     
+                </div>
+            </div>
+            <div class="dots-container">
+                <!-- Dots will be dynamically generated here -->
+            </div>
+        </div>
+        
+        
+        
+
+       
+        <section class="top-rated-movies">
+            <h2>MCU</h2>
+            <div id="topRatedMoviesGrid" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(Mcu-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+        
+        <section class="top-rated-movies2">
+            <h2>DC Universe</h2>
+            <div id="topRatedMoviesGrid2" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(Dc-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies3">
+            <h2>Harry Potter</h2>
+            <div id="topRatedMoviesGrid3" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(hp-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies4">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid4" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies5">
+            <h2>Transformers</h2>
+            <div id="topRatedMoviesGrid5" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(TF-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies6">
+            <h2>Star Wars</h2>
+            <div id="topRatedMoviesGrid6" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(Starwars-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="featured-movies">
+            <h2>Choose your Genre</h2>
+            <div class="view-all-container">
+                <!-- Other content if needed -->
+            </div>
+        
+            <div id="movieGrid" class="movies-grid first-scroller">
+                <!-- Example Movie Cards -->
+                <div class="movie-card">
+                    <img src="action-movie-poster.jpg" alt="Action Genre">
+                    <div class="genre-text">ACTION</div>
+                </div>
+        
+                <div class="movie-card">
+                    <img src="adventure-movie-poster.jpg" alt="Adventure Genre">
+                    <div class="genre-text">ADVENTURE</div>
+                </div>
+        
+                <div class="movie-card">
+                    <img src="horror-movie-poster.jpg" alt="Horror Genre">
+                    <div class="genre-text">HORROR</div>
+                </div>
+        
+                <div class="movie-card">
+                    <img src="scifi-movie-poster.jpg" alt="Sci-Fi Genre">
+                    <div class="genre-text">SCI-FI</div>
+                </div>
+        
+                <div class="movie-card">
+                    <img src="fantasy-movie-poster.jpg" alt="Fantasy Genre">
+                    <div class="genre-text">FANTASY</div>
+                </div>
+                <div class="movie-card">
+                    <img src="Thriller-movie-poster.jpg" alt="Fantasy Genre">
+                    <div class="genre-text">THRILLER</div>
+                </div>
+                <div class="movie-card">
+                    <img src="fantasy-movie-poster.jpg" alt="Fantasy Genre">
+                    <div class="genre-text">FANTASY</div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section class="top-rated-movies7">
+            <h2>Transformers</h2>
+            <div id="topRatedMoviesGrid7" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(TF-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies8">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid8" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies9">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid9" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies10">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid10" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+        <section class="top-rated-movies11">
+            <h2>X-MEN</h2>
+            <div id="topRatedMoviesGrid11" class="movies-grid"></div>
+            <div class="view-all-container">
+<!-- HTML -->
+<button class="view-all-button" onclick="window.location.href='V/movieruls(x-view all).html'">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.29 16.29L14.59 11L9.29 5.71L10.71 4.29L17.71 11.29C18.1 11.68 18.1 12.31 17.71 12.71L10.71 19.71L9.29 18.29Z" fill="currentColor"/>
+    </svg>
+</button>
+            </div>
+        </section>
+
+
+        
+        
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+
+
+    
+    <script src="script(main).js"></script> 
+
+    <center><h4>Powered by Movieruls</h4></center>
+    <center><h5>© 2024 Movieruls.net. All rights reserved.</h5></center>
+
+    
+
+</body> 
+</html>
