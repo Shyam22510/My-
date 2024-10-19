@@ -876,80 +876,46 @@ section {
     flex: 0 0 100%;
     margin-bottom: 10px; 
 }
-/* For small mobile screens (360px and above) */
-@media (min-width: 360px) {
-    .movie-section {
-        display: flex;
-        overflow-x: scroll; /* Enable horizontal scroll */
-        padding: 10px 0;
-        scroll-behavior: smooth;
-    }
-
+/* For small mobile screens (360px and above) */ 
+@media (min-width: 360px) { 
+    .movie-section { 
+        display: flex; 
+        overflow-x: scroll; /* Enable horizontal scroll */ 
+        padding: 10px 0; 
+        scroll-behavior: smooth; 
+    } 
+     
     .movie-section::-webkit-scrollbar {
         display: none; /* Hide scrollbar */
     }
 
     .movie-card {
         flex: 0 0 auto; /* Keep the movie cards from shrinking */
-        width: 100px; /* Smaller card width */
-        margin-right: 1px; /* Adjusted spacing between movie cards */
-    }
-
-    .movie-card h3 {
-        font-size: 0.7rem; /* Smaller title text for mobile */
-        margin: 5px 0; /* Adjusted margin */
-    }
-
-    .movie-card p {
-        font-size: 0.6rem; /* Smaller description text */
+        width: 150px; /* Adjust card width */
+        margin-right: -4px; /* Reduced spacing between movie cards */
     }
 }
 
 /* For tablets (768px and above) */
 @media (min-width: 768px) {
     .movie-card {
-        width: 150px; /* Slightly larger cards for tablets */
+        width: 180px; /* Slightly larger cards for tablets */
         margin-right: 1px; /* Adjusted spacing */
-    }
-
-    .movie-card h3 {
-        font-size: 0.85rem; /* Slightly larger title text */
-    }
-
-    .movie-card p {
-        font-size: 0.75rem; /* Slightly larger description text */
     }
 }
 
 /* For desktops (1024px and above) */
 @media (min-width: 1024px) {
     .movie-card {
-        width: 180px; /* Larger card size for desktop */
-        margin-right: 1px; /* Adjusted spacing */
-    }
-
-    .movie-card h3 {
-        font-size: 1rem; /* Standard title text size */
-    }
-
-    .movie-card p {
-        font-size: 0.85rem; /* Standard description text size */
+        width: 200px; /* Larger card size for desktop */
+        margin-right: 1px; /* Reduced spacing */
     }
 }
-
-/* For large desktops (1440px and above) */
-@media (min-width: 1440px) {
-    .movie-card {
-        width: 220px; /* Adjust card size for large screens */
-        margin-right: 1px; /* Adjusted spacing */
-    }
-
-    .movie-card h3 {
-        font-size: 1.1rem; /* Slightly larger title text */
-    }
-
-    .movie-card p {
-        font-size: 0.9rem; /* Slightly larger description text */
-    }
-}
-
+ 
+/* For large desktops (1440px and above) */ 
+@media (min-width: 1440px) { 
+    .movie-card { 
+        width: 220px; /* Adjust card size for large screens */ 
+        margin-right: 1px; /* Adjusted spacing */ 
+    } 
+} 
