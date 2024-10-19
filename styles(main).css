@@ -892,7 +892,7 @@ section {
     .movie-card {
         flex: 0 0 auto; /* Keep the movie cards from shrinking */
         width: 150px; /* Adjust card width */
-        margin-right: -4px; /* Reduced spacing between movie cards */
+        margin-right: -5px; /* Reduced spacing between movie cards */
     }
 }
 
@@ -908,7 +908,7 @@ section {
 @media (min-width: 1024px) {
     .movie-card {
         width: 200px; /* Larger card size for desktop */
-        margin-right: -4px; /* Reduced spacing */
+        margin-right: 1px; /* Reduced spacing */
     }
 }
 
@@ -916,7 +916,7 @@ section {
 @media (min-width: 1440px) {
     .movie-card {
         width: 220px; /* Adjust card size for large screens */
-        margin-right: -4px; /* Adjusted spacing */
+        margin-right: 1px; /* Adjusted spacing */
     }
 }
 
