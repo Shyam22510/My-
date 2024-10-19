@@ -876,31 +876,47 @@ section {
     flex: 0 0 100%;
     margin-bottom: 10px; 
 }
+/* For small mobile screens (360px and above) */
 @media (min-width: 360px) {
+    .movie-section {
+        display: flex;
+        overflow-x: scroll; /* Enable horizontal scroll */
+        padding: 10px 0;
+        scroll-behavior: smooth;
+    }
+    
+    .movie-section::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+    }
+
     .movie-card {
-        flex: 0 0 48%;
-        margin-bottom: 15px;
+        flex: 0 0 auto; /* Keep the movie cards from shrinking */
+        width: 150px; /* Adjust card width */
+        margin-right: 5px; /* Reduced spacing between movie cards */
     }
 }
 
+/* For tablets (768px and above) */
 @media (min-width: 768px) {
     .movie-card {
-        flex: 0 0 30%;
-        margin-bottom: 20px;
+        width: 180px; /* Slightly larger cards for tablets */
+        margin-right: 7px; /* Adjusted spacing */
     }
 }
 
+/* For desktops (1024px and above) */
 @media (min-width: 1024px) {
     .movie-card {
-        flex: 0 0 23%;
-        margin-bottom: 30px;
+        width: 200px; /* Larger card size for desktop */
+        margin-right: 10px; /* Reduced spacing */
     }
 }
 
+/* For large desktops (1440px and above) */
 @media (min-width: 1440px) {
     .movie-card {
-        flex: 0 0 20%;
-        margin-bottom: 40px;
+        width: 220px; /* Adjust card size for large screens */
+        margin-right: 12px; /* Adjusted spacing */
     }
 }
 
